@@ -1,0 +1,521 @@
+labsuser@vscode:~$ cd code/project/starter/
+labsuser@vscode:~/code/project/starter$ python --version
+Python 3.10.14
+labsuser@vscode:~/code/project/starter$ pip install uv
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: uv in /voc/work/.local/lib/python3.10/site-packages (0.11.28)
+labsuser@vscode:~/code/project/starter$ python -m uv sync
+Resolved 186 packages in 158ms
+Checked 184 packages in 1.11s
+labsuser@vscode:~/code/project/starter$ source .venv/bin/activate
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ python --version
+Python 3.12.12
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv pip install -e .
+Resolved 169 packages in 4.86s
+      Built multimodal-moderation @ file:///voc/work/code/project/starter
+Prepared 1 package in 11.25s
+Uninstalled 1 package in 78ms
+Installed 1 package in 248ms
+ ~ multimodal-moderation==0.1.0 (from file:///voc/work/code/project/starter)
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ cp env.example .env
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv sync --dev
+Resolved 186 packages in 18ms
+Audited 184 packages in 384ms
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run tests/test_moderation_result.py --vv
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run tests/test_text_agent.py --vv
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run tests/test_image_agent.py --vv
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run tests/test_video_agent.py --vv
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run tests/test_audio_agent.py --vv
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run tests/test_gradio_app.py --vv
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run pytest tests/
+========================================================================================================================= test session starts =========================================================================================================================
+platform linux -- Python 3.12.12, pytest-8.4.2, pluggy-1.6.0
+rootdir: /voc/work/code/project/starter
+configfile: pyproject.toml
+plugins: anyio-4.11.0, logfire-4.13.2, asyncio-1.2.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 0 items                                                                                                                                                                                                                                                     
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! KeyboardInterrupt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+<frozen importlib._bootstrap_external>:147: KeyboardInterrupt
+(to show a full traceback on KeyboardInterrupt use --full-trace)
+======================================================================================================================== no tests ran in 0.80s ========================================================================================================================
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run pytest tests/ --vv
+ERROR: usage: pytest [options] [file_or_dir] [file_or_dir] [...]
+pytest: error: unrecognized arguments: --vv
+  inifile: /voc/work/code/project/starter/pyproject.toml
+  rootdir: /voc/work/code/project/starter
+
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run tests/test_gradio_app.py --vv
+
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ 
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run pytest tests/ --vv
+ERROR: usage: pytest [options] [file_or_dir] [file_or_dir] [...]
+pytest: error: unrecognized arguments: --vv
+  inifile: /voc/work/code/project/starter/pyproject.toml
+  rootdir: /voc/work/code/project/starter
+
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run pytest tests/ -vv
+========================================================================================================================= test session starts =========================================================================================================================
+platform linux -- Python 3.12.12, pytest-8.4.2, pluggy-1.6.0 -- /voc/work/code/project/starter/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /voc/work/code/project/starter
+configfile: pyproject.toml
+plugins: anyio-4.11.0, logfire-4.13.2, asyncio-1.2.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 58 items                                                                                                                                                                                                                                                    
+
+tests/test_audio_agent.py::test_moderate_audio_exists PASSED                                                                                                                                                                                                    [  1%]
+tests/test_audio_agent.py::test_moderate_audio_returns_audio_moderation_result PASSED                                                                                                                                                                           [  3%]
+tests/test_audio_agent.py::test_moderate_audio_has_required_fields PASSED                                                                                                                                                                                       [  5%]
+tests/test_audio_agent.py::test_moderate_audio_rationale_not_empty PASSED                                                                                                                                                                                       [  6%]
+tests/test_audio_agent.py::test_moderate_audio_transcription_not_empty PASSED                                                                                                                                                                                   [  8%]
+tests/test_env_setup.py::test_env_file_exists PASSED                                                                                                                                                                                                            [ 10%]
+tests/test_env_setup.py::test_gemini_api_key_is_set PASSED                                                                                                                                                                                                      [ 12%]
+tests/test_env_setup.py::test_user_api_key_is_set PASSED                                                                                                                                                                                                        [ 13%]
+tests/test_env_setup.py::test_default_google_model_is_set PASSED                                                                                                                                                                                                [ 15%]
+tests/test_env_setup.py::test_can_call_gemini_api PASSED                                                                                                                                                                                                        [ 17%]
+tests/test_gradio_app.py::test_create_chat_interface_returns_blocks PASSED                                                                                                                                                                                      [ 18%]
+tests/test_gradio_app.py::test_chatbot_uses_messages_type PASSED                                                                                                                                                                                                [ 20%]
+tests/test_gradio_app.py::test_chatbot_has_copy_button PASSED                                                                                                                                                                                                   [ 22%]
+tests/test_gradio_app.py::test_demo_has_chatbot_component PASSED                                                                                                                                                                                                [ 24%]
+tests/test_gradio_app.py::test_demo_has_multimodal_textbox PASSED                                                                                                                                                                                               [ 25%]
+tests/test_gradio_app.py::test_multimodal_textbox_accepts_multiple_files PASSED                                                                                                                                                                                 [ 27%]
+tests/test_gradio_app.py::test_multimodal_textbox_accepts_correct_file_types PASSED                                                                                                                                                                             [ 29%]
+tests/test_gradio_app.py::test_chat_with_gemini_calls_moderation PASSED                                                                                                                                                                                         [ 31%]
+tests/test_gradio_app.py::test_chat_with_gemini_blocks_flagged_content PASSED                                                                                                                                                                                   [ 32%]
+tests/test_image_agent.py::test_moderate_image_exists PASSED                                                                                                                                                                                                    [ 34%]
+tests/test_image_agent.py::test_moderate_image_returns_image_moderation_result PASSED                                                                                                                                                                           [ 36%]
+tests/test_image_agent.py::test_moderate_image_has_required_fields PASSED                                                                                                                                                                                       [ 37%]
+tests/test_image_agent.py::test_moderate_image_rationale_not_empty PASSED                                                                                                                                                                                       [ 39%]
+tests/test_moderation_result.py::TestModerationResult::test_has_rationale_field PASSED                                                                                                                                                                          [ 41%]
+tests/test_moderation_result.py::TestModerationResult::test_rationale_is_required PASSED                                                                                                                                                                        [ 43%]
+tests/test_moderation_result.py::TestModerationResult::test_is_pydantic_model PASSED                                                                                                                                                                            [ 44%]
+tests/test_moderation_result.py::TestTextModerationResult::test_has_all_required_fields PASSED                                                                                                                                                                  [ 46%]
+tests/test_moderation_result.py::TestTextModerationResult::test_field_types PASSED                                                                                                                                                                              [ 48%]
+tests/test_moderation_result.py::TestTextModerationResult::test_inherits_from_moderation_result PASSED                                                                                                                                                          [ 50%]
+tests/test_moderation_result.py::TestTextModerationResult::test_all_fields_are_required PASSED                                                                                                                                                                  [ 51%]
+tests/test_moderation_result.py::TestTextModerationResult::test_is_flagged_true_when_any_flag_set PASSED                                                                                                                                                        [ 53%]
+tests/test_moderation_result.py::TestTextModerationResult::test_is_flagged_false_when_no_flags_set PASSED                                                                                                                                                       [ 55%]
+tests/test_moderation_result.py::TestImageModerationResult::test_has_all_required_fields PASSED                                                                                                                                                                 [ 56%]
+tests/test_moderation_result.py::TestImageModerationResult::test_field_types PASSED                                                                                                                                                                             [ 58%]
+tests/test_moderation_result.py::TestImageModerationResult::test_inherits_from_moderation_result PASSED                                                                                                                                                         [ 60%]
+tests/test_moderation_result.py::TestImageModerationResult::test_all_fields_are_required PASSED                                                                                                                                                                 [ 62%]
+tests/test_moderation_result.py::TestImageModerationResult::test_is_flagged_true_when_any_flag_set PASSED                                                                                                                                                       [ 63%]
+tests/test_moderation_result.py::TestImageModerationResult::test_is_flagged_false_when_no_flags_set PASSED                                                                                                                                                      [ 65%]
+tests/test_moderation_result.py::TestVideoModerationResult::test_has_all_required_fields PASSED                                                                                                                                                                 [ 67%]
+tests/test_moderation_result.py::TestVideoModerationResult::test_field_types PASSED                                                                                                                                                                             [ 68%]
+tests/test_moderation_result.py::TestVideoModerationResult::test_inherits_from_moderation_result PASSED                                                                                                                                                         [ 70%]
+tests/test_moderation_result.py::TestVideoModerationResult::test_all_fields_are_required PASSED                                                                                                                                                                 [ 72%]
+tests/test_moderation_result.py::TestVideoModerationResult::test_is_flagged_true_when_any_flag_set PASSED                                                                                                                                                       [ 74%]
+tests/test_moderation_result.py::TestVideoModerationResult::test_is_flagged_false_when_no_flags_set PASSED                                                                                                                                                      [ 75%]
+tests/test_moderation_result.py::TestAudioModerationResult::test_has_all_required_fields PASSED                                                                                                                                                                 [ 77%]
+tests/test_moderation_result.py::TestAudioModerationResult::test_field_types PASSED                                                                                                                                                                             [ 79%]
+tests/test_moderation_result.py::TestAudioModerationResult::test_inherits_from_moderation_result PASSED                                                                                                                                                         [ 81%]
+tests/test_moderation_result.py::TestAudioModerationResult::test_all_fields_are_required PASSED                                                                                                                                                                 [ 82%]
+tests/test_moderation_result.py::TestAudioModerationResult::test_is_flagged_true_when_any_flag_set PASSED                                                                                                                                                       [ 84%]
+tests/test_moderation_result.py::TestAudioModerationResult::test_is_flagged_false_when_no_flags_set PASSED                                                                                                                                                      [ 86%]
+tests/test_text_agent.py::test_moderate_text_exists PASSED                                                                                                                                                                                                      [ 87%]
+tests/test_text_agent.py::test_moderate_text_returns_text_moderation_result PASSED                                                                                                                                                                              [ 89%]
+tests/test_text_agent.py::test_moderate_text_has_required_fields PASSED                                                                                                                                                                                         [ 91%]
+tests/test_text_agent.py::test_moderate_text_rationale_not_empty PASSED                                                                                                                                                                                         [ 93%]
+tests/test_video_agent.py::test_moderate_video_exists PASSED                                                                                                                                                                                                    [ 94%]
+tests/test_video_agent.py::test_moderate_video_returns_video_moderation_result PASSED                                                                                                                                                                           [ 96%]
+tests/test_video_agent.py::test_moderate_video_has_required_fields PASSED                                                                                                                                                                                       [ 98%]
+tests/test_video_agent.py::test_moderate_video_rationale_not_empty PASSED                                                                                                                                                                                       [100%]
+
+========================================================================================================================== warnings summary ===========================================================================================================================
+tests/test_env_setup.py:67
+  /voc/work/code/project/starter/tests/test_env_setup.py:67: PytestUnknownMarkWarning: Unknown pytest.mark.integration - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.integration
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=================================================================================================================== 58 passed, 1 warning in 11.64s ====================================================================================================================
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run evals/text/test_cases.py --vv
+Evaluating run_text_moderation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━  87% 0:00:01
+Evaluating run_text_moderation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+                                                                                                                Evaluation Summary: run_text_moderation                                                                                                                
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Case ID                 ┃ Inputs                                                                                        ┃ Outputs                                                                                                                      ┃ Assertions ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━┩
+│ professional_text_run_1 │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/professional_text.txt')] │ rationale='The message is friendly and professional. It offers assistance and directs the user to helpful resources without  │ ✔✔✔✔       │
+│                         │                                                                                               │ using any PII.' contains_pii=False is_unfriendly=False is_unprofessional=False                                               │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_text_run_2 │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/professional_text.txt')] │ rationale='The message is friendly and professional. It clearly states the next steps for the customer and offers further    │ ✔✔✔✔       │
+│                         │                                                                                               │ assistance. No PII was detected.' contains_pii=False is_unfriendly=False is_unprofessional=False                             │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_text_run_3 │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/professional_text.txt')] │ rationale='The message is friendly and professional, and does not contain any personally-identifiable information. The       │ ✔✔✔✔       │
+│                         │                                                                                               │ customer service representative greeted the customer warmly, offered assistance, and provided clear instructions on how to   │            │
+│                         │                                                                                               │ proceed. They also offered further support and ended the message with a pleasant closing. ' contains_pii=False               │            │
+│                         │                                                                                               │ is_unfriendly=False is_unprofessional=False                                                                                  │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_text_run_4 │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/professional_text.txt')] │ rationale='The message is friendly and professional. It offers help and provides resources for the customer without          │ ✔✔✔✔       │
+│                         │                                                                                               │ including any sensitive information.' contains_pii=False is_unfriendly=False is_unprofessional=False                         │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_text_run_5 │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/professional_text.txt')] │ rationale='The message is friendly and professional. It offers assistance, directs the user to helpful resources, and        │ ✔✔✔✔       │
+│                         │                                                                                               │ provides clear next steps without being demanding. No PII was detected.' contains_pii=False is_unfriendly=False              │            │
+│                         │                                                                                               │ is_unprofessional=False                                                                                                      │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ text_with_pii_run_1     │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/text_with_pii.txt')]     │ rationale='The message contains the customer' contains_pii=True is_unfriendly=False is_unprofessional=False                  │ ✔✗✔✔       │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ text_with_pii_run_2     │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/text_with_pii.txt')]     │ rationale='The message contains the customer' contains_pii=True is_unfriendly=False is_unprofessional=False                  │ ✔✗✔✔       │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ text_with_pii_run_3     │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/text_with_pii.txt')]     │ rationale='The message contains the customer' contains_pii=True is_unfriendly=False is_unprofessional=False                  │ ✔✗✔✔       │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ text_with_pii_run_4     │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/text_with_pii.txt')]     │ rationale="The message contains personally-identifiable information including the customer's full name, new shipping         │ ✔✔✔✔       │
+│                         │                                                                                               │ address, email address, phone number, and account number." contains_pii=True is_unfriendly=False is_unprofessional=False     │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ text_with_pii_run_5     │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/text_with_pii.txt')]     │ rationale="The message contains the customer's full name, new shipping address, email address, phone number, and account     │ ✔✔✔✔       │
+│                         │                                                                                               │ number. This is all considered Personally Identifiable Information (PII)." contains_pii=True is_unfriendly=False             │            │
+│                         │                                                                                               │ is_unprofessional=False                                                                                                      │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ unfriendly_text_run_1   │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/unfriendly_text.txt')]   │ rationale='The customer service representative uses an aggressive and impatient tone ("Seriously??", "that\'s your           │ ✔✔✔✔       │
+│                         │                                                                                               │ problem.", "ridiculous", "wasting my time"). The representative also blames the customer ("If you can\'t figure it out by    │            │
+│                         │                                                                                               │ now", "try actually reading the instructions") which is unprofessional and unfriendly. There is no PII in the message.'      │            │
+│                         │                                                                                               │ contains_pii=False is_unfriendly=True is_unprofessional=True                                                                 │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ unfriendly_text_run_2   │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/unfriendly_text.txt')]   │ rationale='The message exhibits an extremely unfriendly and unprofessional tone. The representative uses dismissive language │ ✔✔✔✔       │
+│                         │                                                                                               │ ("Seriously??", "that' contains_pii=False is_unfriendly=True is_unprofessional=True                                          │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ unfriendly_text_run_3   │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/unfriendly_text.txt')]   │ rationale='The customer service representative used a condescending and impatient tone. Phrases like "Seriously??" and "if   │ ✔✔✔✔       │
+│                         │                                                                                               │ you can' contains_pii=False is_unfriendly=True is_unprofessional=True                                                        │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ unfriendly_text_run_4   │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/unfriendly_text.txt')]   │ rationale='"Seriously??" and "If you can\'t figure it out by now, that\'s your problem." and "Maybe you should try actually  │ ✔✔✔✔       │
+│                         │                                                                                               │ reading the instructions instead of wasting my time with the same questions over and over." are all indicative of an         │            │
+│                         │                                                                                               │ unfriendly and unprofessional tone. The representative is being condescending and impatient, which is not appropriate for    │            │
+│                         │                                                                                               │ customer service.' contains_pii=False is_unfriendly=True is_unprofessional=True                                              │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ unfriendly_text_run_5   │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/unfriendly_text.txt')]   │ rationale='"The customer service agent' contains_pii=False is_unfriendly=True is_unprofessional=True                         │ ✔✗✔✔       │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ Averages                │                                                                                               │                                                                                                                              │ 93.3% ✔    │
+└─────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────────┘
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ 
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run evals/text/test_cases.py --vv
+Evaluating run_text_moderation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+                                                                                                                Evaluation Summary: run_text_moderation                                                                                                                
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Case ID                 ┃ Inputs                                                                                        ┃ Outputs                                                                                                                      ┃ Assertions ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━┩
+│ professional_text_run_1 │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/professional_text.txt')] │ rationale='The message is friendly and professional. It clearly states the company name and offers assistance. It also       │ ✔✔✔✔       │
+│                         │                                                                                               │ directs the user to helpful resources and invites further questions. No PII was detected.' contains_pii=False                │            │
+│                         │                                                                                               │ is_unfriendly=False is_unprofessional=False                                                                                  │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_text_run_2 │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/professional_text.txt')] │ rationale='The message is friendly and professional. It offers help, directs the user to resources, and provides a clear way │ ✔✔✔✔       │
+│                         │                                                                                               │ to follow up. No PII was detected.' contains_pii=False is_unfriendly=False is_unprofessional=False                           │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_text_run_3 │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/professional_text.txt')] │ rationale='The message is friendly and professional. It offers help and provides clear instructions for the customer to      │ ✔✔✔✔       │
+│                         │                                                                                               │ follow. It does not contain any personally-identifiable information.' contains_pii=False is_unfriendly=False                 │            │
+│                         │                                                                                               │ is_unprofessional=False                                                                                                      │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_text_run_4 │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/professional_text.txt')] │ rationale='The message is friendly and professional. It welcomes the customer, offers assistance, and provides clear         │ ✔✔✔✔       │
+│                         │                                                                                               │ instructions on how to proceed. It does not contain any personally-identifiable information.' contains_pii=False             │            │
+│                         │                                                                                               │ is_unfriendly=False is_unprofessional=False                                                                                  │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_text_run_5 │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/professional_text.txt')] │ rationale='The message is friendly and professional. It offers help, provides clear instructions, and uses polite language.  │ ✔✔✔✔       │
+│                         │                                                                                               │ No PII was detected.' contains_pii=False is_unfriendly=False is_unprofessional=False                                         │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ text_with_pii_run_1     │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/text_with_pii.txt')]     │ rationale='The message contains the customer' contains_pii=True is_unfriendly=False is_unprofessional=False                  │ ✔✗✔✔       │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ text_with_pii_run_2     │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/text_with_pii.txt')]     │ rationale='The message contains the customer' contains_pii=True is_unfriendly=False is_unprofessional=False                  │ ✔✗✔✔       │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ text_with_pii_run_3     │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/text_with_pii.txt')]     │ rationale='The message contains the customer' contains_pii=True is_unfriendly=False is_unprofessional=False                  │ ✔✗✔✔       │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ text_with_pii_run_4     │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/text_with_pii.txt')]     │ rationale='The message contains PII including the customer' contains_pii=True is_unfriendly=False is_unprofessional=False    │ ✔✗✔✔       │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ text_with_pii_run_5     │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/text_with_pii.txt')]     │ rationale='The message contains PII including name, address, email, phone number, and account number.' contains_pii=True     │ ✔✔✔✔       │
+│                         │                                                                                               │ is_unfriendly=False is_unprofessional=False                                                                                  │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ unfriendly_text_run_1   │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/unfriendly_text.txt')]   │ rationale='The customer service representative used a condescending and sarcastic tone ("Seriously??", "If you can\'t figure │ ✔✔✔✔       │
+│                         │                                                                                               │ it out by now, that\'s your problem.", "Maybe you should try actually reading the instructions"). This language is           │            │
+│                         │                                                                                               │ dismissive and lacks the patience expected in a professional customer service interaction. The representative also implied   │            │
+│                         │                                                                                               │ the customer was wasting their time, which is unprofessional and unfriendly. There was no Personally Identifiable            │            │
+│                         │                                                                                               │ Information (PII) detected.' contains_pii=False is_unfriendly=True is_unprofessional=True                                    │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ unfriendly_text_run_2   │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/unfriendly_text.txt')]   │ rationale='The customer service message is unfriendly due to the use of sarcasm, capitalization for emphasis, and accusatory │ ✔✔✔✔       │
+│                         │                                                                                               │ language ("that' contains_pii=False is_unfriendly=True is_unprofessional=True                                                │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ unfriendly_text_run_3   │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/unfriendly_text.txt')]   │ rationale='The customer representative' contains_pii=False is_unfriendly=True is_unprofessional=True                         │ ✔✗✔✔       │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ unfriendly_text_run_4   │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/unfriendly_text.txt')]   │ rationale='The customer service representative used a condescending and dismissive tone. Phrases like "Seriously??" and      │ ✔✔✔✔       │
+│                         │                                                                                               │ "that\'s your problem" are unprofessional and unfriendly. The representative also implied the customer was wasting their     │            │
+│                         │                                                                                               │ time and not reading instructions, which is an unprofessional and unhelpful way to address a customer\'s confusion.'         │            │
+│                         │                                                                                               │ contains_pii=False is_unfriendly=True is_unprofessional=True                                                                 │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ unfriendly_text_run_5   │ [TextInput(text_file='/voc/work/code/project/starter/evals/test_data/unfriendly_text.txt')]   │ rationale='The message uses a condescending and dismissive tone ("Seriously??", "If you can\'t figure it out by now, that\'s │ ✔✔✔✔       │
+│                         │                                                                                               │ your problem.", "Maybe you should try actually reading the instructions instead of wasting my time"). This indicates an      │            │
+│                         │                                                                                               │ unfriendly and unprofessional interaction, as it lacks the expected patience and helpfulness in customer service. There is   │            │
+│                         │                                                                                               │ no personally-identifiable information present.' contains_pii=False is_unfriendly=True is_unprofessional=True                │            │
+├─────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ Averages                │                                                                                               │                                                                                                                              │ 91.7% ✔    │
+└─────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────────┘
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run evals/image/test_cases.py --vv
+Evaluating run_image_moderation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+                                                                                                               Evaluation Summary: run_image_moderation                                                                                                                
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Case ID                  ┃ Inputs                                                                                           ┃ Outputs                                                                                                                  ┃ Assertions ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━┩
+│ professional_image_run_1 │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/professional_image.jpg')] │ rationale='The image is of high quality and does not contain any disturbing content or personally-identifiable           │ ✔✔✔✔       │
+│                          │                                                                                                  │ information. It depicts a power bank, a laptop, headphones, and a smartphone, which are all common electronic devices    │            │
+│                          │                                                                                                  │ and are appropriate for a professional setting.' contains_pii=False is_disturbing=False is_low_quality=False             │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_image_run_2 │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/professional_image.jpg')] │ rationale='The image is of a power bank, a laptop, headphones, and a smartphone on a desk. There is no harmful content.  │ ✔✔✔✔       │
+│                          │                                                                                                  │ The image is clear and well-lit, not blurry or pixelated. No people or PII are present.' contains_pii=False              │            │
+│                          │                                                                                                  │ is_disturbing=False is_low_quality=False                                                                                 │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_image_run_3 │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/professional_image.jpg')] │ rationale='The image is of good quality and does not contain any disturbing elements or PII. It displays a power bank, a │ ✔✔✔✔       │
+│                          │                                                                                                  │ laptop, headphones, and a smartphone, all relevant to a professional setting.' contains_pii=False is_disturbing=False    │            │
+│                          │                                                                                                  │ is_low_quality=False                                                                                                     │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_image_run_4 │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/professional_image.jpg')] │ rationale='The image is a clear, high-quality photograph of an ACME Power Widget Pro, a portable charger, along with a   │ ✔✔✔✔       │
+│                          │                                                                                                  │ laptop, headphones, and a smartphone. There are no disturbing elements, and no personally identifiable information (PII) │            │
+│                          │                                                                                                  │ is visible. The image is suitable for a professional customer service setting.' contains_pii=False is_disturbing=False   │            │
+│                          │                                                                                                  │ is_low_quality=False                                                                                                     │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_image_run_5 │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/professional_image.jpg')] │ rationale='The image is appropriate for a professional customer service setting. It is not disturbing and does not       │ ✔✔✔✔       │
+│                          │                                                                                                  │ contain any personally-identifiable information. The image quality is also good.' contains_pii=False is_disturbing=False │            │
+│                          │                                                                                                  │ is_low_quality=False                                                                                                     │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ image_with_person_run_1  │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/image_with_person.jpg')]  │ rationale='The image contains a person, which is considered personally-identifiable information (PII).'                  │ ✔✔✔✔       │
+│                          │                                                                                                  │ contains_pii=True is_disturbing=False is_low_quality=False                                                               │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ image_with_person_run_2  │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/image_with_person.jpg')]  │ rationale='The image contains a person, which is considered personally-identifiable information (PII). It is not         │ ✔✔✔✔       │
+│                          │                                                                                                  │ disturbing or of low quality.' contains_pii=True is_disturbing=False is_low_quality=False                                │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ image_with_person_run_3  │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/image_with_person.jpg')]  │ rationale='The image contains a person, which is considered PII. It is not disturbing or of low quality.'                │ ✔✔✔✔       │
+│                          │                                                                                                  │ contains_pii=True is_disturbing=False is_low_quality=False                                                               │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ image_with_person_run_4  │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/image_with_person.jpg')]  │ rationale='The image contains a person, which is considered PII. The image quality is good and it is not disturbing.'    │ ✔✔✔✔       │
+│                          │                                                                                                  │ contains_pii=True is_disturbing=False is_low_quality=False                                                               │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ image_with_person_run_5  │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/image_with_person.jpg')]  │ rationale='The image contains a person, which is considered Personally Identifiable Information (PII).'                  │ ✔✔✔✔       │
+│                          │                                                                                                  │ contains_pii=True is_disturbing=False is_low_quality=False                                                               │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ low_quality_image_run_1  │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/low_quality_image.jpg')]  │ rationale='The image contains a hand, which is considered Personally Identifiable Information (PII). Additionally, the   │ ✗✔✔✔       │
+│                          │                                                                                                  │ image is blurry and lacks clarity, making it low quality. There are no disturbing elements present.' contains_pii=True   │            │
+│                          │                                                                                                  │ is_disturbing=False is_low_quality=True                                                                                  │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ low_quality_image_run_2  │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/low_quality_image.jpg')]  │ rationale='The image contains a hand, which is considered PII. The image is also blurry and low quality, making it       │ ✗✔✔✔       │
+│                          │                                                                                                  │ unprofessional.' contains_pii=True is_disturbing=False is_low_quality=True                                               │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ low_quality_image_run_3  │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/low_quality_image.jpg')]  │ rationale='The image contains a hand, which is considered personally-identifiable information (PII). The image quality   │ ✗✔✔✔       │
+│                          │                                                                                                  │ is also low due to blurriness, making it unsuitable for professional customer service use.' contains_pii=True            │            │
+│                          │                                                                                                  │ is_disturbing=False is_low_quality=True                                                                                  │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ low_quality_image_run_4  │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/low_quality_image.jpg')]  │ rationale='The image contains a hand, which is considered personally-identifiable information (PII). The image is also   │ ✗✔✔✔       │
+│                          │                                                                                                  │ slightly blurry and has some artifacts that could be considered low quality.' contains_pii=True is_disturbing=False      │            │
+│                          │                                                                                                  │ is_low_quality=True                                                                                                      │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ low_quality_image_run_5  │ [ImageInput(image_file='/voc/work/code/project/starter/evals/test_data/low_quality_image.jpg')]  │ rationale='The image contains a hand, which is considered personally-identifiable information (PII). The image is also   │ ✗✔✔✔       │
+│                          │                                                                                                  │ slightly out of focus, making it of low quality.' contains_pii=True is_disturbing=False is_low_quality=True              │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ Averages                 │                                                                                                  │                                                                                                                          │ 91.7% ✔    │
+└──────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────────┘
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run evals/audio/test_cases.py --vv
+Evaluating run_audio_moderation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+                                                                                                               Evaluation Summary: run_audio_moderation                                                                                                                
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Case ID                  ┃ Inputs                                                                                           ┃ Outputs                                                                                                                  ┃ Assertions ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━┩
+│ professional_audio_run_1 │ [AudioInput(audio_file='/voc/work/code/project/starter/evals/test_data/professional_audio.mp3')] │ rationale='The audio is friendly and professional. No PII was detected.' transcription='Welcome to our customer support' │ ✔✔✔✔✔      │
+│                          │                                                                                                  │ contains_pii=False is_unfriendly=False is_unprofessional=False                                                           │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_audio_run_2 │ [AudioInput(audio_file='/voc/work/code/project/starter/evals/test_data/professional_audio.mp3')] │ rationale='The audio does not contain any unfriendly, unprofessional, or harmful content. It is a standard professional  │ ✔✔✔✔✔      │
+│                          │                                                                                                  │ greeting.' transcription='Welcome to our customer support' contains_pii=False is_unfriendly=False                        │            │
+│                          │                                                                                                  │ is_unprofessional=False                                                                                                  │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_audio_run_3 │ [AudioInput(audio_file='/voc/work/code/project/starter/evals/test_data/professional_audio.mp3')] │ rationale='The audio does not contain any unfriendly or unprofessional content. No PII was detected.'                    │ ✔✗✔✔✔      │
+│                          │                                                                                                  │ transcription='Welcome to our customer support' contains_pii=False is_unfriendly=False is_unprofessional=False           │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_audio_run_4 │ [AudioInput(audio_file='/voc/work/code/project/starter/evals/test_data/professional_audio.mp3')] │ rationale='The audio does not contain any harmful content. It is a standard customer service greeting.'                  │ ✔✔✔✔✔      │
+│                          │                                                                                                  │ transcription='Hello, welcome to our customer support.' contains_pii=False is_unfriendly=False is_unprofessional=False   │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_audio_run_5 │ [AudioInput(audio_file='/voc/work/code/project/starter/evals/test_data/professional_audio.mp3')] │ rationale='The audio is friendly and professional. No harmful content, unprofessional language, or PII was detected.'    │ ✔✔✔✔✔      │
+│                          │                                                                                                  │ transcription='Welcome to our customer support' contains_pii=False is_unfriendly=False is_unprofessional=False           │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ audio_with_pii_run_1     │ [AudioInput(audio_file='/voc/work/code/project/starter/evals/test_data/audio_with_pii.mp3')]     │ rationale='The audio contains personally-identifiable information (PII) as the customer is asked to provide their date   │ ✔✔✔✔✔      │
+│                          │                                                                                                  │ of birth and social security number. The tone is professional and friendly, with no unprofessional or unfriendly content │            │
+│                          │                                                                                                  │ detected.' transcription='Welcome to the customer support center. My name is John, can you please verify that your date  │            │
+│                          │                                                                                                  │ of birth is November 2nd, 1978 and your social security number is 123456789.' contains_pii=True is_unfriendly=False      │            │
+│                          │                                                                                                  │ is_unprofessional=False                                                                                                  │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ audio_with_pii_run_2     │ [AudioInput(audio_file='/voc/work/code/project/starter/evals/test_data/audio_with_pii.mp3')]     │ rationale='The audio recording contains personally-identifiable information, specifically a date of birth and a social   │ ✗✗✔✔✔      │
+│                          │                                                                                                  │ security number. This is considered harmful in a professional customer service setting as it violates privacy and        │            │
+│                          │                                                                                                  │ security protocols.' transcription='Welcome to the customer support center. My name is John, can you please verify that  │            │
+│                          │                                                                                                  │ your date of birth is November 2nd, 1978 and your social security number is 123456789' contains_pii=True                 │            │
+│                          │                                                                                                  │ is_unfriendly=False is_unprofessional=True                                                                               │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ audio_with_pii_run_3     │ [AudioInput(audio_file='/voc/work/code/project/starter/evals/test_data/audio_with_pii.mp3')]     │ rationale='The audio contains personally-identifiable information, specifically a date of birth and a social security    │ ✔✔✔✔✔      │
+│                          │                                                                                                  │ number, which should not be shared in a customer service interaction. The tone and content are otherwise professional    │            │
+│                          │                                                                                                  │ and friendly.' transcription='Welcome to the customer support center. My name is John, can you please verify that your   │            │
+│                          │                                                                                                  │ date of birth is November 2nd, 1978 and your social security number is 123456789.' contains_pii=True is_unfriendly=False │            │
+│                          │                                                                                                  │ is_unprofessional=False                                                                                                  │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ audio_with_pii_run_4     │ [AudioInput(audio_file='/voc/work/code/project/starter/evals/test_data/audio_with_pii.mp3')]     │ rationale='The audio contains personally identifiable information, specifically a date of birth and a social security    │ ✔✗✔✔✔      │
+│                          │                                                                                                  │ number, which should be protected. The tone is professional and friendly.' transcription='Welcome to the customer        │            │
+│                          │                                                                                                  │ support center. My name is John, can you please verify that your date of birth is November 2nd, 1978 and your social     │            │
+│                          │                                                                                                  │ security number is 123456789.' contains_pii=True is_unfriendly=False is_unprofessional=False                             │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ audio_with_pii_run_5     │ [AudioInput(audio_file='/voc/work/code/project/starter/evals/test_data/audio_with_pii.mp3')]     │ rationale='The audio recording contains sensitive personally identifiable information (PII) including a date of birth    │ ✔✔✔✔✔      │
+│                          │                                                                                                  │ (November 2, 1978) and a social security number (123456789). This information should not be shared in a customer service │            │
+│                          │                                                                                                  │ interaction due to privacy and security reasons. The tone and content are professional and friendly, with no unfriendly  │            │
+│                          │                                                                                                  │ or unprofessional elements detected.' transcription='Welcome to the customer support center. My name is John, can you    │            │
+│                          │                                                                                                  │ please verify that your date of birth is November 2nd, 1978 and your social security number is 123456789'                │            │
+│                          │                                                                                                  │ contains_pii=True is_unfriendly=False is_unprofessional=False                                                            │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ Averages                 │                                                                                                  │                                                                                                                          │ 92.0% ✔    │
+└──────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────────┘
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run evals/video/test_cases.py --vv
+Evaluating run_video_moderation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+                                                                                                               Evaluation Summary: run_video_moderation                                                                                                                
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Case ID                  ┃ Inputs                                                                                           ┃ Outputs                                                                                                                  ┃ Assertions ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━┩
+│ professional_video_run_1 │ [VideoInput(video_file='/voc/work/code/project/starter/evals/test_data/professional_video.mp4')] │ rationale='The video does not contain any disturbing content or PII. The video quality is also good.' contains_pii=False │ ✔✔✔✔       │
+│                          │                                                                                                  │ is_disturbing=False is_low_quality=False                                                                                 │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_video_run_2 │ [VideoInput(video_file='/voc/work/code/project/starter/evals/test_data/professional_video.mp4')] │ rationale='The video does not contain any disturbing content, PII, or low-quality footage. It appears to be a            │ ✔✔✔✔       │
+│                          │                                                                                                  │ professional product showcase.' contains_pii=False is_disturbing=False is_low_quality=False                              │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_video_run_3 │ [VideoInput(video_file='/voc/work/code/project/starter/evals/test_data/professional_video.mp4')] │ rationale='The video does not contain any disturbing content, PII, or low-quality visuals.' contains_pii=False           │ ✔✔✔✔       │
+│                          │                                                                                                  │ is_disturbing=False is_low_quality=False                                                                                 │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_video_run_4 │ [VideoInput(video_file='/voc/work/code/project/starter/evals/test_data/professional_video.mp4')] │ rationale='The video does not contain any disturbing content or PII. The video quality is high throughout.'              │ ✔✔✔✔       │
+│                          │                                                                                                  │ contains_pii=False is_disturbing=False is_low_quality=False                                                              │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ professional_video_run_5 │ [VideoInput(video_file='/voc/work/code/project/starter/evals/test_data/professional_video.mp4')] │ rationale='The video does not contain any disturbing content or PII. The video quality is good.' contains_pii=False      │ ✔✔✔✔       │
+│                          │                                                                                                  │ is_disturbing=False is_low_quality=False                                                                                 │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ video_with_face_run_1    │ [VideoInput(video_file='/voc/work/code/project/starter/evals/test_data/video_with_face.mp4')]    │ rationale='The video does not contain any harmful content. It is of good quality and does not show any PII.'             │ ✗✗✔✔       │
+│                          │                                                                                                  │ contains_pii=False is_disturbing=False is_low_quality=False                                                              │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ video_with_face_run_2    │ [VideoInput(video_file='/voc/work/code/project/starter/evals/test_data/video_with_face.mp4')]    │ rationale='The video contains a person' contains_pii=True is_disturbing=False is_low_quality=False                       │ ✔✔✔✔       │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ video_with_face_run_3    │ [VideoInput(video_file='/voc/work/code/project/starter/evals/test_data/video_with_face.mp4')]    │ rationale='The video does not contain any harmful content. The video does not contain PII as the face is not clearly     │ ✗✗✔✔       │
+│                          │                                                                                                  │ visible. The video is not disturbing and is of acceptable quality.' contains_pii=False is_disturbing=False               │            │
+│                          │                                                                                                  │ is_low_quality=False                                                                                                     │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ video_with_face_run_4    │ [VideoInput(video_file='/voc/work/code/project/starter/evals/test_data/video_with_face.mp4')]    │ rationale='The video does not contain any disturbing content or personally identifiable information. The video quality   │ ✗✗✔✔       │
+│                          │                                                                                                  │ is acceptable and does not appear to be low-resolution, blurry, pixelated, underexposed, or overexposed.'                │            │
+│                          │                                                                                                  │ contains_pii=False is_disturbing=False is_low_quality=False                                                              │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ video_with_face_run_5    │ [VideoInput(video_file='/voc/work/code/project/starter/evals/test_data/video_with_face.mp4')]    │ rationale="The video contains a close-up of a person's face, which is considered PII. The video is not disturbing and is │ ✔✔✔✔       │
+│                          │                                                                                                  │ of acceptable quality." contains_pii=True is_disturbing=False is_low_quality=False                                       │            │
+├──────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ Averages                 │                                                                                                  │                                                                                                                          │ 85.0% ✔    │
+└──────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────────┘
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run multimodel-moderation
+error: Failed to spawn: `multimodel-moderation`
+  Caused by: No such file or directory (os error 2)
+(multimodal-moderation) labsuser@vscode:~/code/project/starter$ uv run multimodal-moderation
+❗️ The launch_app `port` parameter is deprecated and will be removed in a future release. Use the `PHOENIX_PORT` environment variable instead.
+/voc/data/uv/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/contextlib.py:144: SAWarning: Skipped unsupported reflection of expression-based index ix_cumulative_llm_token_count_total
+  next(self.gen)
+/voc/data/uv/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/contextlib.py:144: SAWarning: Skipped unsupported reflection of expression-based index ix_latency
+  next(self.gen)
+🌍 To view the Phoenix app in your browser, visit http://localhost:6006/
+📖 For more information on how to use Phoenix, check out https://arize.com/docs/phoenix
+🔍 Phoenix UI: http://localhost:6006/
+INFO:     Will watch for changes in these directories: ['/voc/work/code/project/starter']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [12423] using WatchFiles
+INFO:     Started server process [12454]
+INFO:     Waiting for application startup.
+TRACE:    ASGI [1] Started scope={'type': 'lifespan', 'asgi': {'version': '3.0', 'spec_version': '2.0'}, 'state': {}}
+TRACE:    ASGI [1] Receive {'type': 'lifespan.startup'}
+TRACE:    ASGI [1] Send {'type': 'lifespan.startup.complete'}
+INFO:     Application startup complete.
+INFO:httpx:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+* Running on local URL:  http://0.0.0.0:7860
+INFO:httpx:HTTP Request: GET http://localhost:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD http://localhost:7860/ "HTTP/1.1 200 OK"
+* To create a public link, set `share=True` in `launch()`.
+INFO:multimodal_moderation.gradio_app:New turn - Text: 'Hi There!...', Files: 0
+TRACE:    127.0.0.1:51562 - HTTP connection made
+TRACE:    127.0.0.1:51562 - ASGI [2] Started scope={'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'client': ('127.0.0.1', 51562), 'scheme': 'http', 'root_path': '', 'headers': '<...>', 'state': {}, 'method': 'POST', 'path': '/api/v1/moderate_text', 'raw_path': b'/api/v1/moderate_text', 'query_string': b''}
+TRACE:    127.0.0.1:51562 - ASGI [2] Receive {'type': 'http.request', 'body': '<21 bytes>', 'more_body': False}
+TRACE:    127.0.0.1:51562 - ASGI [2] Send {'type': 'http.response.start', 'status': 200, 'headers': '<...>'}
+INFO:     127.0.0.1:51562 - "POST /api/v1/moderate_text HTTP/1.1" 200 OK
+TRACE:    127.0.0.1:51562 - ASGI [2] Send {'type': 'http.response.body', 'body': '<143 bytes>'}
+TRACE:    127.0.0.1:51562 - ASGI [2] Completed
+TRACE:    127.0.0.1:51562 - HTTP connection lost
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://gemini.vocareum.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+INFO:multimodal_moderation.gradio_app:Response generated (2 messages in history)
+INFO:multimodal_moderation.gradio_app:New turn - Text: 'Do you have a recording which you can share...', Files: 0
+TRACE:    127.0.0.1:47154 - HTTP connection made
+TRACE:    127.0.0.1:47154 - ASGI [3] Started scope={'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'client': ('127.0.0.1', 47154), 'scheme': 'http', 'root_path': '', 'headers': '<...>', 'state': {}, 'method': 'POST', 'path': '/api/v1/moderate_text', 'raw_path': b'/api/v1/moderate_text', 'query_string': b''}
+TRACE:    127.0.0.1:47154 - ASGI [3] Receive {'type': 'http.request', 'body': '<55 bytes>', 'more_body': False}
+TRACE:    127.0.0.1:47154 - ASGI [3] Send {'type': 'http.response.start', 'status': 200, 'headers': '<...>'}
+INFO:     127.0.0.1:47154 - "POST /api/v1/moderate_text HTTP/1.1" 200 OK
+TRACE:    127.0.0.1:47154 - ASGI [3] Send {'type': 'http.response.body', 'body': '<177 bytes>'}
+TRACE:    127.0.0.1:47154 - ASGI [3] Completed
+TRACE:    127.0.0.1:47154 - HTTP connection lost
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://gemini.vocareum.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+INFO:multimodal_moderation.gradio_app:Response generated (4 messages in history)
+INFO:multimodal_moderation.gradio_app:New turn - Text: 'Kindly schedule an appointment with our tech cente...', Files: 0
+TRACE:    127.0.0.1:44740 - HTTP connection made
+TRACE:    127.0.0.1:44740 - ASGI [4] Started scope={'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'client': ('127.0.0.1', 44740), 'scheme': 'http', 'root_path': '', 'headers': '<...>', 'state': {}, 'method': 'POST', 'path': '/api/v1/moderate_text', 'raw_path': b'/api/v1/moderate_text', 'query_string': b''}
+TRACE:    127.0.0.1:44740 - ASGI [4] Receive {'type': 'http.request', 'body': '<135 bytes>', 'more_body': False}
+TRACE:    127.0.0.1:44740 - ASGI [4] Send {'type': 'http.response.start', 'status': 200, 'headers': '<...>'}
+INFO:     127.0.0.1:44740 - "POST /api/v1/moderate_text HTTP/1.1" 200 OK
+TRACE:    127.0.0.1:44740 - ASGI [4] Send {'type': 'http.response.body', 'body': '<261 bytes>'}
+TRACE:    127.0.0.1:44740 - ASGI [4] Completed
+TRACE:    127.0.0.1:44740 - HTTP connection lost
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://gemini.vocareum.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+INFO:multimodal_moderation.gradio_app:Response generated (6 messages in history)
+INFO:multimodal_moderation.gradio_app:New turn - Text: 'Iam sorry to hear that, I understand your concern ...', Files: 0
+TRACE:    127.0.0.1:36044 - HTTP connection made
+TRACE:    127.0.0.1:36044 - ASGI [5] Started scope={'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'client': ('127.0.0.1', 36044), 'scheme': 'http', 'root_path': '', 'headers': '<...>', 'state': {}, 'method': 'POST', 'path': '/api/v1/moderate_text', 'raw_path': b'/api/v1/moderate_text', 'query_string': b''}
+TRACE:    127.0.0.1:36044 - ASGI [5] Receive {'type': 'http.request', 'body': '<107 bytes>', 'more_body': False}
+TRACE:    127.0.0.1:36044 - ASGI [5] Send {'type': 'http.response.start', 'status': 200, 'headers': '<...>'}
+INFO:     127.0.0.1:36044 - "POST /api/v1/moderate_text HTTP/1.1" 200 OK
+TRACE:    127.0.0.1:36044 - ASGI [5] Send {'type': 'http.response.body', 'body': '<290 bytes>'}
+TRACE:    127.0.0.1:36044 - ASGI [5] Completed
+TRACE:    127.0.0.1:36044 - HTTP connection lost
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://gemini.vocareum.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+INFO:multimodal_moderation.gradio_app:Response generated (8 messages in history)
+INFO:multimodal_moderation.gradio_app:New turn - Text: 'Are you saying it never worked ? Your message says...', Files: 0
+TRACE:    127.0.0.1:60288 - HTTP connection made
+TRACE:    127.0.0.1:60288 - ASGI [6] Started scope={'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'client': ('127.0.0.1', 60288), 'scheme': 'http', 'root_path': '', 'headers': '<...>', 'state': {}, 'method': 'POST', 'path': '/api/v1/moderate_text', 'raw_path': b'/api/v1/moderate_text', 'query_string': b''}
+TRACE:    127.0.0.1:60288 - ASGI [6] Receive {'type': 'http.request', 'body': '<82 bytes>', 'more_body': False}
+TRACE:    127.0.0.1:60288 - ASGI [6] Send {'type': 'http.response.start', 'status': 200, 'headers': '<...>'}
+INFO:     127.0.0.1:60288 - "POST /api/v1/moderate_text HTTP/1.1" 200 OK
+TRACE:    127.0.0.1:60288 - ASGI [6] Send {'type': 'http.response.body', 'body': '<571 bytes>'}
+TRACE:    127.0.0.1:60288 - ASGI [6] Completed
+TRACE:    127.0.0.1:60288 - HTTP connection lost
+INFO:multimodal_moderation.gradio_app:New turn - Text: 'As per your previous message , the device stopped ...', Files: 0
+TRACE:    127.0.0.1:44954 - HTTP connection made
+TRACE:    127.0.0.1:44954 - ASGI [7] Started scope={'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'client': ('127.0.0.1', 44954), 'scheme': 'http', 'root_path': '', 'headers': '<...>', 'state': {}, 'method': 'POST', 'path': '/api/v1/moderate_text', 'raw_path': b'/api/v1/moderate_text', 'query_string': b''}
+TRACE:    127.0.0.1:44954 - ASGI [7] Receive {'type': 'http.request', 'body': '<74 bytes>', 'more_body': False}
+TRACE:    127.0.0.1:44954 - ASGI [7] Send {'type': 'http.response.start', 'status': 200, 'headers': '<...>'}
+INFO:     127.0.0.1:44954 - "POST /api/v1/moderate_text HTTP/1.1" 200 OK
+TRACE:    127.0.0.1:44954 - ASGI [7] Send {'type': 'http.response.body', 'body': '<155 bytes>'}
+TRACE:    127.0.0.1:44954 - ASGI [7] Completed
+TRACE:    127.0.0.1:44954 - HTTP connection lost
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://gemini.vocareum.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+INFO:multimodal_moderation.gradio_app:Response generated (10 messages in history)
+INFO:multimodal_moderation.gradio_app:New turn - Text: 'Was it working when it was delivered...', Files: 0
+TRACE:    127.0.0.1:42046 - HTTP connection made
+TRACE:    127.0.0.1:42046 - ASGI [8] Started scope={'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'client': ('127.0.0.1', 42046), 'scheme': 'http', 'root_path': '', 'headers': '<...>', 'state': {}, 'method': 'POST', 'path': '/api/v1/moderate_text', 'raw_path': b'/api/v1/moderate_text', 'query_string': b''}
+TRACE:    127.0.0.1:42046 - ASGI [8] Receive {'type': 'http.request', 'body': '<48 bytes>', 'more_body': False}
+TRACE:    127.0.0.1:42046 - ASGI [8] Send {'type': 'http.response.start', 'status': 200, 'headers': '<...>'}
+INFO:     127.0.0.1:42046 - "POST /api/v1/moderate_text HTTP/1.1" 200 OK
+TRACE:    127.0.0.1:42046 - ASGI [8] Send {'type': 'http.response.body', 'body': '<176 bytes>'}
+TRACE:    127.0.0.1:42046 - ASGI [8] Completed
+TRACE:    127.0.0.1:42046 - HTTP connection lost
+INFO:google_genai.models:AFC is enabled with max remote calls: 10.
+INFO:httpx:HTTP Request: POST https://gemini.vocareum.com/v1beta/models/gemini-2.5-flash-lite:generateContent "HTTP/1.1 200 OK"
+INFO:multimodal_moderation.gradio_app:Response generated (12 messages in history)
+INFO:multimodal_moderation.gradio_app:New turn - Text: 'I am sorry, raising a refund request...', Files: 0
+TRACE:    127.0.0.1:49182 - HTTP connection made
+TRACE:    127.0.0.1:49182 - ASGI [9] Started scope={'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'client': ('127.0.0.1', 49182), 'scheme': 'http', 'root_path': '', 'headers': '<...>', 'state': {}, 'method': 'POST', 'path': '/api/v1/moderate_text', 'raw_path': b'/api/v1/moderate_text', 'query_string': b''}
+TRACE:    127.0.0.1:49182 - ASGI [9] Receive {'type': 'http.request', 'body': '<48 bytes>', 'more_body': False}
+TRACE:    127.0.0.1:49182 - ASGI [9] Send {'type': 'http.response.start', 'status': 200, 'headers': '<...>'}
+INFO:     127.0.0.1:49182 - "POST /api/v1/moderate_text HTTP/1.1" 200 OK
+TRACE:    127.0.0.1:49182 - ASGI [9] Send {'type': 'http.response.body', 'body': '<259 bytes>'}
+TRACE:    127.0.0.1:49182 - ASGI [9] Completed
