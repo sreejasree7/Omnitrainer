@@ -80,6 +80,41 @@ class TestTextModerationResult:
         with pytest.raises(ValidationError, match="contains_pii|is_unfriendly|is_unprofessional"):
             TextModerationResult(rationale="Test")
 
+    def test_is_flagged_true_when_any_flag_set(self):
+        """Verify is_flagged is True when at least one flag is True"""
+        result = TextModerationResult(
+            rationale="Test rationale",
+            contains_pii=True,
+            is_unfriendly=False,
+            is_unprofessional=False,
+        )
+        assert result.is_flagged is True
+
+        result = TextModerationResult(
+            rationale="Test rationale",
+            contains_pii=False,
+            is_unfriendly=True,
+            is_unprofessional=False,
+        )
+        assert result.is_flagged is True
+
+        result = TextModerationResult(
+            rationale="Test rationale",
+            contains_pii=False,
+            is_unfriendly=False,
+            is_unprofessional=True,
+        )
+        assert result.is_flagged is True
+
+    def test_is_flagged_false_when_no_flags_set(self):
+        """Verify is_flagged is False when all flags are False"""
+        result = TextModerationResult(
+            rationale="Test rationale",
+            contains_pii=False,
+            is_unfriendly=False,
+            is_unprofessional=False,
+        )
+        assert result.is_flagged is False
 
 class TestImageModerationResult:
     """Test the ImageModerationResult class"""
@@ -122,6 +157,42 @@ class TestImageModerationResult:
         with pytest.raises(ValidationError, match="contains_pii|is_disturbing|is_low_quality"):
             ImageModerationResult(rationale="Test")
 
+    def test_is_flagged_true_when_any_flag_set(self):
+        """Verify is_flagged is True when at least one flag is True"""
+        result = ImageModerationResult(
+            rationale="Test rationale",
+            contains_pii=True,
+            is_disturbing=False,
+            is_low_quality=False,
+        )
+        assert result.is_flagged is True
+
+        result = ImageModerationResult(
+            rationale="Test rationale",
+            contains_pii=False,
+            is_disturbing=True,
+            is_low_quality=False,
+        )
+        assert result.is_flagged is True
+
+        result = ImageModerationResult(
+            rationale="Test rationale",
+            contains_pii=False,
+            is_disturbing=False,
+            is_low_quality=True,
+        )
+        assert result.is_flagged is True
+
+    def test_is_flagged_false_when_no_flags_set(self):
+        """Verify is_flagged is False when all flags are False"""
+        result = ImageModerationResult(
+            rationale="Test rationale",
+            contains_pii=False,
+            is_disturbing=False,
+            is_low_quality=False,
+        )
+        assert result.is_flagged is False
+
 
 class TestVideoModerationResult:
     """Test the VideoModerationResult class"""
@@ -163,6 +234,42 @@ class TestVideoModerationResult:
         """Verify all fields are required"""
         with pytest.raises(ValidationError, match="contains_pii|is_disturbing|is_low_quality"):
             VideoModerationResult(rationale="Test")
+
+    def test_is_flagged_true_when_any_flag_set(self):
+        """Verify is_flagged is True when at least one flag is True"""
+        result = VideoModerationResult(
+            rationale="Test rationale",
+            contains_pii=True,
+            is_disturbing=False,
+            is_low_quality=False,
+        )
+        assert result.is_flagged is True
+
+        result = VideoModerationResult(
+            rationale="Test rationale",
+            contains_pii=False,
+            is_disturbing=True,
+            is_low_quality=False,
+        )
+        assert result.is_flagged is True
+
+        result = VideoModerationResult(
+            rationale="Test rationale",
+            contains_pii=False,
+            is_disturbing=False,
+            is_low_quality=True,
+        )
+        assert result.is_flagged is True
+
+    def test_is_flagged_false_when_no_flags_set(self):
+        """Verify is_flagged is False when all flags are False"""
+        result = VideoModerationResult(
+            rationale="Test rationale",
+            contains_pii=False,
+            is_disturbing=False,
+            is_low_quality=False,
+        )
+        assert result.is_flagged is False
 
 
 class TestAudioModerationResult:
@@ -209,3 +316,43 @@ class TestAudioModerationResult:
         """Verify all fields are required"""
         with pytest.raises(ValidationError, match="transcription|contains_pii|is_unfriendly|is_unprofessional"):
             AudioModerationResult(rationale="Test", transcription="Test")
+
+    def test_is_flagged_true_when_any_flag_set(self):
+        """Verify is_flagged is True when at least one flag is True"""
+        result = AudioModerationResult(
+            rationale="Test rationale",
+            transcription="Test transcription",
+            contains_pii=True,
+            is_unfriendly=False,
+            is_unprofessional=False,
+        )
+        assert result.is_flagged is True
+
+        result = AudioModerationResult(
+            rationale="Test rationale",
+            transcription="Test transcription",
+            contains_pii=False,
+            is_unfriendly=True,
+            is_unprofessional=False,
+        )
+        assert result.is_flagged is True
+
+        result = AudioModerationResult(
+            rationale="Test rationale",
+            transcription="Test transcription",
+            contains_pii=False,
+            is_unfriendly=False,
+            is_unprofessional=True,
+        )
+        assert result.is_flagged is True
+
+    def test_is_flagged_false_when_no_flags_set(self):
+        """Verify is_flagged is False when all flags are False"""
+        result = AudioModerationResult(
+            rationale="Test rationale",
+            transcription="Test transcription",
+            contains_pii=False,
+            is_unfriendly=False,
+            is_unprofessional=False,
+        )
+        assert result.is_flagged is False
